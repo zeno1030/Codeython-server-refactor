@@ -1,5 +1,6 @@
 package clofi.codeython.member.controller;
 
+import clofi.codeython.member.service.role.MemberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -13,7 +14,6 @@ import clofi.codeython.member.dto.request.CreateMemberRequest;
 import clofi.codeython.member.dto.request.UpdateMemberRequest;
 import clofi.codeython.member.dto.response.MemberResponse;
 import clofi.codeython.member.dto.response.RankingResponse;
-import clofi.codeython.member.service.MemberService;
 import clofi.codeython.security.CustomMemberDetails;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

@@ -60,7 +60,7 @@ public class MemberRepositoryImpl implements MemberRepository {
     }
 
     @Override
-    public List<Member> findAll() {
-        return memberJpaRepository.findAll();
+    public void deleteAllInBatch() {
+        memberJpaRepository.deleteAllInBatch();
     }
 }

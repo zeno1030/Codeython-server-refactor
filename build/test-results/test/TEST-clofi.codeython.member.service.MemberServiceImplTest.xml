@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="clofi.codeython.member.service.MemberServiceImplTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-01-02T06:17:35" hostname="gwonjihwan-ui-Macmini.local" time="0.44">
+  <properties/>
+  <testcase name="닉네임, 아이디, 비밀번호를 입력하면 회원가입을 할 수 있다." classname="clofi.codeython.member.service.MemberServiceImplTest" time="0.44"/>
+  <system-out><![CDATA[15:17:33.904 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [clofi.codeython.member.service.MemberServiceImplTest]: MemberServiceImplTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+15:17:33.948 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration clofi.codeython.CodeythonApplication for test class clofi.codeython.member.service.MemberServiceImplTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.4)
+
+2025-01-02T15:17:34.079+09:00  INFO 2518 --- [    Test worker] c.c.m.service.MemberServiceImplTest      : Starting MemberServiceImplTest using Java 21.0.5 with PID 2518 (started by kwon in /Users/kwon/Desktop/Github/Codeython-server-refactor)
+2025-01-02T15:17:34.080+09:00  INFO 2518 --- [    Test worker] c.c.m.service.MemberServiceImplTest      : No active profile set, falling back to 1 default profile: "default"
+2025-01-02T15:17:34.312+09:00  INFO 2518 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-02T15:17:34.336+09:00  INFO 2518 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 7 JPA repository interfaces.
+2025-01-02T15:17:34.474+09:00  INFO 2518 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-02T15:17:34.538+09:00  INFO 2518 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:fbcf5233-b94f-44e6-8dd0-a6a173c31922 user=SA
+2025-01-02T15:17:34.538+09:00  INFO 2518 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-02T15:17:34.557+09:00  INFO 2518 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-02T15:17:34.579+09:00  INFO 2518 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-01-02T15:17:34.590+09:00  INFO 2518 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-02T15:17:34.662+09:00  INFO 2518 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-02T15:17:35.008+09:00  INFO 2518 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-02T15:17:35.030+09:00  INFO 2518 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-02T15:17:35.173+09:00  INFO 2518 --- [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-01-02T15:17:35.399+09:00  WARN 2518 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-02T15:17:35.490+09:00  INFO 2518 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@128fe3ab, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@73502c47, org.springframework.security.web.context.SecurityContextHolderFilter@510cefb6, org.springframework.security.web.header.HeaderWriterFilter@623eebca, org.springframework.web.filter.CorsFilter@724d4e75, org.springframework.security.web.authentication.logout.LogoutFilter@50c8a382, clofi.codeython.security.jwt.JWTFilter@750e313c, clofi.codeython.security.LoginFilter@1871068d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5d796665, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7b3489b7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6ab123d0, org.springframework.security.web.session.SessionManagementFilter@5408b06d, org.springframework.security.web.access.ExceptionTranslationFilter@2e46ffd5, org.springframework.security.web.access.intercept.AuthorizationFilter@41a4135e]
+2025-01-02T15:17:35.584+09:00  INFO 2518 --- [    Test worker] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2025-01-02T15:17:35.585+09:00  INFO 2518 --- [    Test worker] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@3644d305]]
+2025-01-02T15:17:35.585+09:00  INFO 2518 --- [    Test worker] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2025-01-02T15:17:35.591+09:00  INFO 2518 --- [    Test worker] c.c.m.service.MemberServiceImplTest      : Started MemberServiceImplTest in 1.593 seconds (process running for 1.949)
+]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/Users/kwon/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.12/be4984cb6fd1ef1d11f218a648889dfda44b8a15/byte-buddy-agent-1.14.12.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

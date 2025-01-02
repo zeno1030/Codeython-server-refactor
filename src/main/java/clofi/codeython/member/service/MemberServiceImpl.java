@@ -3,6 +3,7 @@ package clofi.codeython.member.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import clofi.codeython.member.service.role.MemberService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,22 +19,23 @@ import clofi.codeython.member.dto.response.RankerResponse;
 import clofi.codeython.member.dto.response.RankingResponse;
 import clofi.codeython.member.repository.role.MemberRepository;
 import clofi.codeython.security.CustomMemberDetails;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class MemberService implements UserDetailsService {
+public class MemberServiceImpl implements UserDetailsService, MemberService {
     private final MemberRepository memberRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Override
     public Long signUp(CreateMemberRequest createMemberRequest) {
         memberRepository.existsByNickname(createMemberRequest.getNickname());
         memberRepository.existsByUsername(createMemberRequest.getUsername());
         return memberRepository.save(createMemberRequest.toMember(bCryptPasswordEncoder)).getUserNo();
     }
 
+    @Override
     public Long update(String userName, UpdateMemberRequest updateMemberRequest) {
         Member memberId = memberRepository.findByUsername(userName);
         Member member = memberRepository.findByUserNo(memberId.getUserNo());
@@ -42,6 +44,7 @@ public class MemberService implements UserDetailsService {
         return member.getUserNo();
     }
 
+    @Override
     public MemberResponse getMember(String userName) {
         Member member = memberRepository.findByUsername(userName);
         Integer exp = member.getExp();
@@ -56,6 +59,7 @@ public class MemberService implements UserDetailsService {
         return memberData == null ? null : new CustomMemberDetails(memberData);
     }
 
+    @Override
     public RankingResponse ranking(String userName) {
         Member member = memberRepository.findByUsername(userName);
         List<Member> top5Members = memberRepository.findTop5ByOrderByExpDesc();

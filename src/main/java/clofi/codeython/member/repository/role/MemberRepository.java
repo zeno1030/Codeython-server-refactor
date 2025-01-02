@@ -22,5 +22,5 @@ public interface MemberRepository{
 
     Member save(Member member);
 
-    List<Member> findAll();
+    void deleteAllInBatch();
 }

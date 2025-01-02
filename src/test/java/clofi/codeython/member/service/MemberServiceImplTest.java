@@ -2,6 +2,7 @@ package clofi.codeython.member.service;
 
 import static org.assertj.core.api.Assertions.*;
 
+import clofi.codeython.member.service.role.MemberService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,7 @@ import clofi.codeython.member.repository.role.MemberRepository;
 import jakarta.persistence.EntityNotFoundException;
 
 @SpringBootTest
-class MemberServiceTest {
+class MemberServiceImplTest {
     @Autowired
     private MemberService memberService;
     @Autowired
@@ -38,10 +39,8 @@ class MemberServiceTest {
         );
         //when
         Long memberId = memberService.signUp(createMemberRequest);
-        Member member = memberRepository.findByUserNo(memberId)
-            .orElseThrow(() -> new EntityNotFoundException("일치하는 사용자가 없습니다."));
+        Member member = memberRepository.findByUserNo(memberId);
         //then
-
         assertThat(member.getUsername()).isEqualTo("zeno1030");
         assertThat(member.getNickname()).isEqualTo("zeno");
         assertThat(member.getExp()).isEqualTo(0);
@@ -106,8 +105,7 @@ class MemberServiceTest {
         );
         //when
         memberService.update(member.getUsername(), updateMemberRequest);
-        Member updatedMember = memberRepository.findByUserNo(member.getUserNo())
-            .orElseThrow(() -> new EntityNotFoundException("일치하는 사용자가 없습니다."));
+        Member updatedMember = memberRepository.findByUserNo(member.getUserNo());
         //then
         assertThat(updatedMember.getNickname()).isEqualTo("zeno");
     }
@@ -123,8 +121,7 @@ class MemberServiceTest {
         );
         memberRepository.save(member);
         //when
-        Member memberInfo = memberRepository.findByUserNo(member.getUserNo())
-            .orElseThrow(() -> new EntityNotFoundException("일치하는 사용자가 없습니다."));
+        Member memberInfo = memberRepository.findByUserNo(member.getUserNo());
         //then
         assertThat(memberInfo.getNickname()).isEqualTo("rnfmal");
         assertThat(memberInfo.getExp()).isEqualTo(0);
