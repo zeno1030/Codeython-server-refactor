@@ -1,4 +1,4 @@
-package clofi.codeython.member.repository;
+package clofi.codeython.member.repository.jpa;
 
 import clofi.codeython.member.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -6,8 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface MemberRepository extends JpaRepository<Member, Long> {
-
+public interface MemberJpaRepository extends JpaRepository<Member, Long> {
     Optional<Member> findByUserNo(Long userNo);
 
     Member findByUsername(String userName);

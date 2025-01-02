@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import clofi.codeython.member.domain.Member;
-import clofi.codeython.member.repository.MemberRepository;
+import clofi.codeython.member.repository.role.MemberRepository;
 import clofi.codeython.problem.core.domain.Language;
 import clofi.codeython.problem.core.domain.LanguageType;
 import clofi.codeython.problem.core.domain.Problem;

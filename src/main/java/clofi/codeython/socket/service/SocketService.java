@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import clofi.codeython.member.domain.Member;
-import clofi.codeython.member.repository.MemberRepository;
+import clofi.codeython.member.repository.role.MemberRepository;
 import clofi.codeython.room.domain.Room;
 import clofi.codeython.room.domain.RoomMember;
 import clofi.codeython.room.repository.RoomMemberRepository;

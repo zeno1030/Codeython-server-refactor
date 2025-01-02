@@ -16,7 +16,7 @@ import clofi.codeython.member.dto.request.UpdateMemberRequest;
 import clofi.codeython.member.dto.response.MemberResponse;
 import clofi.codeython.member.dto.response.RankerResponse;
 import clofi.codeython.member.dto.response.RankingResponse;
-import clofi.codeython.member.repository.MemberRepository;
+import clofi.codeython.member.repository.role.MemberRepository;
 import clofi.codeython.security.CustomMemberDetails;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -29,23 +29,15 @@ public class MemberService implements UserDetailsService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public Long signUp(CreateMemberRequest createMemberRequest) {
-        if (memberRepository.existsByNickname(createMemberRequest.getNickname())) {
-            throw new IllegalArgumentException("이미 존재한 닉네임입니다.");
-        }
-        if (memberRepository.existsByUsername(createMemberRequest.getUsername())) {
-            throw new IllegalArgumentException("이미 존재하는 아이디 입니다.");
-        }
-        Member member = memberRepository.save(createMemberRequest.toMember(bCryptPasswordEncoder));
-        return member.getUserNo();
+        memberRepository.existsByNickname(createMemberRequest.getNickname());
+        memberRepository.existsByUsername(createMemberRequest.getUsername());
+        return memberRepository.save(createMemberRequest.toMember(bCryptPasswordEncoder)).getUserNo();
     }
 
     public Long update(String userName, UpdateMemberRequest updateMemberRequest) {
         Member memberId = memberRepository.findByUsername(userName);
-        Member member = memberRepository.findByUserNo(memberId.getUserNo())
-            .orElseThrow(() -> new EntityNotFoundException("일치하는 사용자가 없습니다."));
-        if (memberRepository.existsByNickname(updateMemberRequest.getNickname())) {
-            throw new IllegalArgumentException("이미 존재하는 아이디입니다.");
-        }
+        Member member = memberRepository.findByUserNo(memberId.getUserNo());
+        memberRepository.existsByNickname(updateMemberRequest.getNickname());
         member.updateNickName(updateMemberRequest.getNickname());
         return member.getUserNo();
     }
@@ -61,16 +53,11 @@ public class MemberService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Member memberData = memberRepository.findByUsername(username);
-        if (memberData != null) {
-            return new CustomMemberDetails(memberData);
-        }
-        return null;
+        return memberData == null ? null : new CustomMemberDetails(memberData);
     }
 
     public RankingResponse ranking(String userName) {
         Member member = memberRepository.findByUsername(userName);
-        List<Member> members = memberRepository.findAll();
-
         List<Member> top5Members = memberRepository.findTop5ByOrderByExpDesc();
         List<RankerResponse> rankerResponses = new ArrayList<>();
 

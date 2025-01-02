@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import clofi.codeython.member.domain.Member;
-import clofi.codeython.member.repository.MemberRepository;
+import clofi.codeython.member.repository.role.MemberRepository;
 import clofi.codeython.problem.core.domain.Problem;
 import clofi.codeython.problem.core.domain.Record;
 import clofi.codeython.problem.core.dto.request.BaseCodeRequest;

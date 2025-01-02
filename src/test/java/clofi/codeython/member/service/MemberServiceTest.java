@@ -12,7 +12,7 @@ import clofi.codeython.member.domain.Member;
 import clofi.codeython.member.dto.request.CreateMemberRequest;
 import clofi.codeython.member.dto.request.UpdateMemberRequest;
 import clofi.codeython.member.dto.response.RankingResponse;
-import clofi.codeython.member.repository.MemberRepository;
+import clofi.codeython.member.repository.role.MemberRepository;
 import jakarta.persistence.EntityNotFoundException;
 
 @SpringBootTest
