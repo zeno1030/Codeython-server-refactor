@@ -15,6 +15,7 @@ import clofi.codeython.member.dto.request.UpdateMemberRequest;
 import clofi.codeython.member.dto.response.RankingResponse;
 import clofi.codeython.member.repository.role.MemberRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 
 @SpringBootTest
 class MemberServiceImplTest {
@@ -64,7 +65,7 @@ class MemberServiceImplTest {
         );
         //when //then
         assertThatThrownBy(() ->
-            memberService.signUp(createMemberRequest)).isInstanceOf(IllegalArgumentException.class)
+            memberService.signUp(createMemberRequest)).isInstanceOf(InvalidDataAccessApiUsageException.class)
             .hasMessage("이미 존재한 닉네임입니다.");
     }
 
@@ -86,7 +87,7 @@ class MemberServiceImplTest {
         );
         //when //then
         assertThatThrownBy(() ->
-            memberService.signUp(createMemberRequest)).isInstanceOf(IllegalArgumentException.class)
+            memberService.signUp(createMemberRequest)).isInstanceOf(InvalidDataAccessApiUsageException.class)
             .hasMessage("이미 존재하는 아이디 입니다.");
     }
 
