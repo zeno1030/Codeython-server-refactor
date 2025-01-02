@@ -2,7 +2,8 @@
 ![image](https://github.com/user-attachments/assets/5ed65391-d8c6-4b5d-a5ad-8cab26d3a6dd)
 
 객체지향 하향식 접근에 맞게 리펙토링을 진행하는 레포지토리입니다. JPA에 대한 의존성을 낮게하고 SOLID 개념을 복습해보는 공간입니다.
-
+제가 구현한 member, socket 부분 리펙토링을 진행하고 있습니다.
+# Codeython-server
 ![대표사진](/images/CodeythonLogo_star.png)
 **_코디톤(Codeython)_** 은 구름 1차 IDE 만들기 프로젝트의 주제로 진행된 프로젝트입니다.<br/>
 
