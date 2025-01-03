@@ -16,7 +16,7 @@ import clofi.codeython.problem.core.repository.ProblemRepository;
 import clofi.codeython.room.dto.request.CreateRoomRequest;
 import clofi.codeython.room.dto.response.AllRoomResponse;
 import clofi.codeython.room.dto.response.CreateRoomResponse;
-import clofi.codeython.room.repository.RoomRepository;
+import clofi.codeython.room.repository.role.RoomRepository;
 
 @SpringBootTest
 class RoomServiceTest {

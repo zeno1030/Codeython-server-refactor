@@ -1,4 +1,4 @@
-package clofi.codeython.room.repository;
+package clofi.codeython.room.repository.jpa;
 
 import clofi.codeython.member.domain.Member;
 import clofi.codeython.room.domain.Room;
@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface RoomMemberRepository extends JpaRepository<RoomMember, Integer> {
+public interface RoomMemberJpaRepository extends JpaRepository<RoomMember, Integer> {
     List<RoomMember> findAllByRoom(Room room);
 
     List<RoomMember> findAllByRoomRoomNo(Long roomNo);

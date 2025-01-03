@@ -12,8 +12,8 @@ import java.util.UUID;
 
 import clofi.codeython.room.domain.Room;
 import clofi.codeython.room.domain.RoomMember;
-import clofi.codeython.room.repository.RoomMemberRepository;
-import clofi.codeython.room.repository.RoomRepository;
+import clofi.codeython.room.repository.role.RoomMemberRepository;
+import clofi.codeython.room.repository.role.RoomRepository;
 import clofi.codeython.socket.dto.response.DataResponse;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.messaging.simp.SimpMessagingTemplate;

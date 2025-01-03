@@ -11,8 +11,8 @@ import clofi.codeython.member.domain.Member;
 import clofi.codeython.member.repository.role.MemberRepository;
 import clofi.codeython.room.domain.Room;
 import clofi.codeython.room.domain.RoomMember;
-import clofi.codeython.room.repository.RoomMemberRepository;
-import clofi.codeython.room.repository.RoomRepository;
+import clofi.codeython.room.repository.role.RoomMemberRepository;
+import clofi.codeython.room.repository.role.RoomRepository;
 import clofi.codeython.socket.dto.response.SocketUserResponse;
 import lombok.RequiredArgsConstructor;
 
@@ -26,8 +26,7 @@ public class SocketService {
     private final RoomMemberRepository roomMemberRepository;
 
     public List<SocketUserResponse> joinRoom(Long roomId) {
-        Room room = roomRepository.findById(roomId)
-            .orElseThrow(() -> new IllegalArgumentException("방이 존재하지 않습니다."));
+        Room room = roomRepository.findById(roomId);
         List<RoomMember> roomMemberList = roomMemberRepository.findAllByRoomRoomNo(room.getRoomNo());
 
         return getSocketUserResponses(roomMemberList);
