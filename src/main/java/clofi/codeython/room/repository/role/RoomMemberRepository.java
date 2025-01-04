@@ -19,5 +19,7 @@ public interface RoomMemberRepository{
 
     RoomMember findByUser(Member member);
 
-    Optional<RoomMember> findByRoomAndUser(Room room, Member member);
+    RoomMember findByRoomAndUser(Room room, Member member);
+
+    void save(RoomMember roomMember);
 }
