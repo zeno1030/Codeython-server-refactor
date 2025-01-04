@@ -33,8 +33,7 @@ public class SocketService {
     }
 
     public List<SocketUserResponse> leaveRoom(Long roomId, String nickName) {
-        Room room = roomRepository.findById(roomId)
-            .orElseThrow(() -> new IllegalArgumentException("방이 존재하지 않습니다."));
+        Room room = roomRepository.findById(roomId);
         Member member = memberRepository.findByNickname(nickName);
         RoomMember roomMemberUser = roomMemberRepository.findByUser(member);
         List<RoomMember> roomMemberList = roomMemberRepository.findAllByRoomRoomNo(room.getRoomNo());
