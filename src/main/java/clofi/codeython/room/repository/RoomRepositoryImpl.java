@@ -28,4 +28,9 @@ public class RoomRepositoryImpl implements RoomRepository {
         return roomJpaRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("방이 존재하지 않습니다."));
     }
+
+    @Override
+    public void deleteById(Long id) {
+        roomJpaRepository.deleteById(id);
+    }
 }

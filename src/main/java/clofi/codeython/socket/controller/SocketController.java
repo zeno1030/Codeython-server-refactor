@@ -4,6 +4,7 @@ import java.util.List;
 
 import clofi.codeython.room.service.RoomService;
 import clofi.codeython.socket.dto.response.*;
+import clofi.codeython.socket.service.role.SocketService;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -11,7 +12,6 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.RestController;
 
-import clofi.codeython.socket.service.SocketService;
 import lombok.RequiredArgsConstructor;
 
 @RestController

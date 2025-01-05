@@ -10,4 +10,6 @@ public interface RoomRepository{
     Room findByInviteCode(String inviteCode);
 
     Room findById(Long id);
+
+    void deleteById(Long id);
 }

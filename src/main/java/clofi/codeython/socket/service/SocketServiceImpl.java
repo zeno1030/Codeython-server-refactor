@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import clofi.codeython.socket.service.role.SocketService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class SocketService {
+public class SocketServiceImpl implements SocketService {
 
     private final MemberRepository memberRepository;
     private final RoomRepository roomRepository;
@@ -38,6 +39,14 @@ public class SocketService {
         RoomMember roomMemberUser = roomMemberRepository.findByUser(member);
         List<RoomMember> roomMemberList = roomMemberRepository.findAllByRoomRoomNo(room.getRoomNo());
 
+        updateNewOwner(roomId, roomMemberUser, room, member, roomMemberList);
+
+        roomMemberList.removeIf(m -> m.getUser().equals(member));
+
+        return getSocketUserResponses(roomMemberList);
+    }
+
+    private void updateNewOwner(Long roomId, RoomMember roomMemberUser, Room room, Member member, List<RoomMember> roomMemberList) {
         if (roomMemberUser.isOwner()) {
             roomMemberRepository.deleteByRoomAndUser(room, member);
             if (roomMemberList.size() > 1) {
@@ -51,13 +60,9 @@ public class SocketService {
         } else {
             roomMemberRepository.deleteByRoomAndUser(room, member);
         }
-
-        roomMemberList.removeIf(m -> m.getUser().equals(member));
-
-        return getSocketUserResponses(roomMemberList);
     }
 
-    private List<SocketUserResponse> getSocketUserResponses(List<RoomMember> roomMemberList) {
+    public List<SocketUserResponse> getSocketUserResponses(List<RoomMember> roomMemberList) {
         return roomMemberList.stream().map(m -> {
             Member member = m.getUser();
             Map<String, Integer> levelAndExp = calculateLevelAndExp(member);
