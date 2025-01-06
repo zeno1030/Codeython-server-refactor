@@ -9,5 +9,6 @@ public interface SocketService {
     List<SocketUserResponse> joinRoom(Long roomId);
 
     List<SocketUserResponse> leaveRoom(Long roomId, String nickName);
+
     List<SocketUserResponse> getSocketUserResponses(List<RoomMember> roomMemberList);
 }

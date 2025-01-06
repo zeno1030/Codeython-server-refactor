@@ -46,22 +46,6 @@ public class SocketServiceImpl implements SocketService {
         return getSocketUserResponses(roomMemberList);
     }
 
-    private void updateNewOwner(Long roomId, RoomMember roomMemberUser, Room room, Member member, List<RoomMember> roomMemberList) {
-        if (roomMemberUser.isOwner()) {
-            roomMemberRepository.deleteByRoomAndUser(room, member);
-            if (roomMemberList.size() > 1) {
-                RoomMember newOwner =
-                    roomMemberList.get(0).getUser().equals(member) ? roomMemberList.get(1) : roomMemberList.get(0);
-                newOwner.updateOwner(true);
-                roomMemberRepository.save(newOwner);
-            } else {
-                roomRepository.deleteById(roomId);
-            }
-        } else {
-            roomMemberRepository.deleteByRoomAndUser(room, member);
-        }
-    }
-
     public List<SocketUserResponse> getSocketUserResponses(List<RoomMember> roomMemberList) {
         return roomMemberList.stream().map(m -> {
             Member member = m.getUser();
@@ -81,5 +65,25 @@ public class SocketServiceImpl implements SocketService {
         result.put("level", level);
         result.put("exp", exp);
         return result;
+    }
+
+    private void updateNewOwner(Long roomId, RoomMember roomMemberUser, Room room, Member member, List<RoomMember> roomMemberList) {
+        if (roomMemberUser.isOwner()) {
+            roomMemberRepository.deleteByRoomAndUser(room, member);
+            if (roomMemberList.size() > 1) {
+                switchOwner(member, roomMemberList);
+            } else {
+                roomRepository.deleteById(roomId);
+            }
+        } else {
+            roomMemberRepository.deleteByRoomAndUser(room, member);
+        }
+    }
+
+    private void switchOwner(Member member, List<RoomMember> roomMemberList) {
+        RoomMember newOwner =
+                roomMemberList.get(0).getUser().equals(member) ? roomMemberList.get(1) : roomMemberList.get(0);
+        newOwner.updateOwner(true);
+        roomMemberRepository.save(newOwner);
     }
 }
